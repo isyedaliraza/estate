@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="estate_property_offer_action" model="ir.actions.act_window">
+        <field name="name">Offers</field>
+        <field name="res_model">estate.property.offer</field>
+        <field name="domain">[('property_type_id', '=', active_id)]</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="estate_property_offer_tree_view" model="ir.ui.view">
+        <field name="name">Property Offers</field>
+        <field name="model">estate.property.offer</field>
+        <field name="arch" type="xml">
+            <tree
+                    decoration-success="status=='accepted'"
+                    decoration-danger="status=='refused'"
+                    editable="bottom"
+            >
+                <field name="price"/>
+                <field name="partner_id"/>
+                <field string="Validity (days)" name="validity"/>
+                <field string="Deadline" name="date_deadline"/>
+                <button
+                        name="accept_offer"
+                        icon="fa-check"
+                        string="Accept"
+                        type="object"
+                        attrs="{'invisible': ['|', ('status', '=', 'accepted'), ('status', '=', 'refused')]}"
+                />
+                <button
+                        name="refuse_offer"
+                        icon="fa-times"
+                        string="Refuse"
+                        type="object"
+                        attrs="{'invisible': ['|', ('status', '=', 'accepted'), ('status', '=', 'refused')]}"
+                />
+                <field name="status" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="estate_property_offer_form_view" model="ir.ui.view">
+        <field name="name">Property Offers</field>
+        <field name="model">estate.property.offer</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="price"/>
+                </group>
+
+                <group>
+                    <field name="partner_id"/>
+                </group>
+
+                <group>
+                    <field string="Validity (days)" name="validity"/>
+                </group>
+
+                <group>
+                    <field string="Deadline" name="date_deadline"/>
+                </group>
+
+                <group>
+                    <field name="status"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+</odoo>
