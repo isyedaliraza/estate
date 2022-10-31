@@ -17,10 +17,6 @@
                 id="estate_menu_property_tags"
                 action="estate_property_tag_action"
             />
-            <menuitem
-                id="estate_menu_doctors"
-                action="estate_doctor_action"
-            />
         </menuitem>
     </menuitem>
 
